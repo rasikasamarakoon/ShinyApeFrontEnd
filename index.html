@@ -26,48 +26,27 @@
 
     <link rel="stylesheet" href="css/flaticon.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      /* Social icons: horizontal list with brand colors */
+      .social-media .ftco-footer-social{display:flex;align-items:center;gap:10px;margin:0;padding:0;}
+      .social-media .ftco-footer-social li{list-style:none;}
+      .social-media .ftco-footer-social a{display:inline-flex;justify-content:center;align-items:center;width:36px;height:36px;border-radius:50%;}
+      .social-media .ftco-footer-social a span{color:#fff;font-size:16px;}
+      /* Brand backgrounds */
+      .social-media .ftco-footer-social a.facebook{background:#1877F2;}
+      .social-media .ftco-footer-social a.instagram{background:#E4405F;}
+      .social-media .ftco-footer-social a.youtube{background:#FF0000;}
+      .social-media .ftco-footer-social a.twitter{background:#1DA1F2;}
+      /* Footer brand colors */
+      .footer .ftco-footer-social a span{color:#fff;}
+      .footer .ftco-footer-social a.facebook{background:#1877F2;}
+      .footer .ftco-footer-social a.instagram{background:#E4405F;}
+      .footer .ftco-footer-social a.youtube{background:#FF0000;}
+      .footer .ftco-footer-social a.twitter{background:#1DA1F2;}
+    </style>
   </head>
   <body>
-    <div class="wrap">
-      <div class="container">
-        <div class="row justify-content-between">
-          <div class="col-12 col-md d-flex">
-            <div class="social-media">
-              <p class="mb-0 d-flex">
-                <a
-                  href="#"
-                  class="d-flex align-items-center justify-content-center"
-                  ><span class="fa fa-facebook"
-                    ><i class="sr-only">Facebook</i></span
-                  ></a
-                >
-                <a
-                  href="#"
-                  class="d-flex align-items-center justify-content-center"
-                  ><span class="fa fa-twitter"
-                    ><i class="sr-only">Twitter</i></span
-                  ></a
-                >
-                <a
-                  href="#"
-                  class="d-flex align-items-center justify-content-center"
-                  ><span class="fa fa-instagram"
-                    ><i class="sr-only">Instagram</i></span
-                  ></a
-                >
-                <a
-                  href="#"
-                  class="d-flex align-items-center justify-content-center"
-                  ><span class="fa fa-dribbble"
-                    ><i class="sr-only">Dribbble</i></span
-                  ></a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     <nav
       class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
       id="ftco-navbar"
@@ -131,21 +110,21 @@
             <h1 class="mb-4">
               Let us do the dirty work, so you don't have to.
             </h1>
+			<h5 style="margin-bottom: 20px; color: #f3e53d;">Contact us now</h5>
             <p>
               <a href="tel:12323232" class="btn btn-primary mr-md-4 py-2 px-4"
-                >Call us - 12323232 <span class="ion-ios-arrow-forward"></span
+                ><span class="fa fa-phone" style="margin-right:8px;"></span>022223175445 <span class="ion-ios-arrow-forward"></span
               ></a>
 			  <a href="mailto:info@shinyapes.co.nz" class="btn btn-primary mr-md-4 py-2 px-4"
-                >Email us - info@shinyapes.co.nz <span class="ion-ios-arrow-forward"></span
+                ><span class="fa fa-envelope" style="margin-right:8px;"></span>info@shinyapes.co.nz <span class="ion-ios-arrow-forward"></span
               ></a>
             </p>
-            <h6 style="color: #fff;">Follow us on social media</h6>
+			<h5 style="margin-top: 40px; color: #f3e53d;">Follow us on social media</h5>
             <div class="social-media">
               <ul class="ftco-footer-social list-unstyled mt-4">
-                <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="fa fa-dribbble"></span></a></li>
+                <li class="ftco-animate"><a class="facebook" href="#"><span class="fa fa-facebook"></span></a></li>
+                <li class="ftco-animate"><a class="instagram" href="#"><span class="fa fa-instagram"></span></a></li>
+                <li class="ftco-animate"><a class="youtube" href="#"><span class="fa fa-youtube"></span></a></li>
               </ul>
             </div>
           </div> 
