@@ -1,6 +1,76 @@
 (function ($) {
   "use strict";
 
+  // Contact form: POST to AWS Lambda and show status
+  $(function () {
+    var $form = $("#contactForm");
+    if ($form.length) {
+      $form.on("submit", async function (e) {
+        e.preventDefault();
+        var payload = {
+          name: ($("#contactName").val() || "").trim(),
+          email: ($("#contactEmail").val() || "").trim(),
+          phone: ($("#contactPhone").val() || "").trim(),
+          service: ($("#contactService").val() || "").trim(),
+          message: ($("#contactMessage").val() || "").trim(),
+        };
+
+        var $status = $("#contactStatus");
+        if ($status.length) {
+          $status.text("Sending...").css("display", "block");
+        }
+        // Debug: log outgoing payload (avoid sensitive info in production)
+        try {
+          console.log("[ContactForm] Submitting payload", payload);
+        } catch (_) {}
+
+        var endpoint =
+          "https://ouk5caf7kvvakmfirijjeyvdj40qnefw.lambda-url.ap-southeast-2.on.aws/";
+        try {
+          var res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          try {
+            console.log("[ContactForm] Response", res.status, res.statusText);
+          } catch (_) {}
+          if (!res.ok) {
+            var bodyText = "";
+            try {
+              bodyText = await res.text();
+            } catch (_) {}
+            throw new Error(
+              "Request failed: " +
+                res.status +
+                " " +
+                res.statusText +
+                (bodyText ? " | " + bodyText : "")
+            );
+          }
+          try {
+            await res.json();
+          } catch (_) {}
+          if ($status.length) {
+            $status
+              .text("Your message was sent to info@shinyapes.co.nz")
+              .css("display", "block");
+          }
+          $form[0].reset();
+        } catch (err) {
+          try {
+            console.error("[ContactForm] Submission failed", err);
+          } catch (_) {}
+          if ($status.length) {
+            $status
+              .text("Sorry, something went wrong. Please try again.")
+              .css("display", "block");
+          }
+        }
+      });
+    }
+  });
+
   $(window).stellar({
     responsive: true,
     parallaxBackgrounds: true,
