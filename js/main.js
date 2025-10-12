@@ -16,8 +16,26 @@
         };
 
         var $status = $("#contactStatus");
-        if ($status.length) {
-          $status.text("Sending...").css("display", "block");
+
+        function setStatus(kind, text) {
+          if (!$status.length) return;
+          try {
+            $status.removeClass("alert alert-success alert-danger");
+            if (kind === "success") $status.addClass("alert alert-success");
+            else if (kind === "error") $status.addClass("alert alert-danger");
+            $status.text(text).css("display", "block");
+          } catch (_) {}
+        }
+
+        function validatePayload(p) {
+          var errors = [];
+          var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!p.name) errors.push("Name is required");
+          if (!p.email || !emailRe.test(p.email))
+            errors.push("Valid email is required");
+          if (!p.service) errors.push("Please select a service");
+          if (!p.message) errors.push("Message is required");
+          return errors;
         }
         // Debug: log outgoing payload (avoid sensitive info in production)
         try {
@@ -26,6 +44,17 @@
 
         var endpoint =
           "https://ouk5caf7kvvakmfirijjeyvdj40qnefw.lambda-url.ap-southeast-2.on.aws/";
+        var validationErrors = validatePayload(payload);
+        if (validationErrors.length) {
+          setStatus(
+            "error",
+            "Please correct the following: " + validationErrors.join("; ")
+          );
+          return;
+        }
+
+        setStatus(null, "Sending...");
+
         try {
           var res = await fetch(endpoint, {
             method: "POST",
@@ -51,21 +80,16 @@
           try {
             await res.json();
           } catch (_) {}
-          if ($status.length) {
-            $status
-              .text("Your message was sent to info@shinyapes.co.nz")
-              .css("display", "block");
-          }
+          setStatus("success", "Thanks! Your message was sent successfully.");
           $form[0].reset();
         } catch (err) {
           try {
             console.error("[ContactForm] Submission failed", err);
           } catch (_) {}
-          if ($status.length) {
-            $status
-              .text("Sorry, something went wrong. Please try again.")
-              .css("display", "block");
-          }
+          setStatus(
+            "error",
+            "Sorry, something went wrong while sending your message. Please try again."
+          );
         }
       });
     }
