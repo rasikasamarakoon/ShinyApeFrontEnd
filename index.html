@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="css/magnific-popup.css" />
 
     <link rel="stylesheet" href="css/flaticon.css" />
-    <link rel="stylesheet" href="css/style.css" />
+                <link rel="stylesheet" href="css/style.css" />
     <style>
       /* Social icons: horizontal list with brand colors */
       .social-media .ftco-footer-social{display:flex;align-items:center;gap:10px;margin:0;padding:0;}
@@ -52,6 +52,16 @@
       /* Center underline on footer heading */
       .footer .footer-heading{position:relative;}
       .footer .footer-heading:after{left:50%;transform:translateX(-50%);} 
+
+      /* Desktop: limit submit button size */
+      @media (min-width: 992px) {
+        #contactSubmit {
+          max-width: 220px;
+          width: 100%;
+          max-height: 56px;
+          padding: 0.75rem 1rem; /* slightly smaller than py-3 px-4 */
+        }
+      }
     </style>
   </head>
   <body>
@@ -124,8 +134,8 @@
               <a href="tel:12323232" class="btn btn-primary mr-2 mr-md-4 py-2 px-4"
                 ><span class="fa fa-phone" style="margin-right:8px;"></span>02885327177 <span class="ion-ios-arrow-forward"></span
               ></a>
-			  <a href="mailto:info@shinyapes.co.nz" class="btn btn-primary mr-md-4 py-2 px-4 mt-2 mt-md-0"
-                ><span class="fa fa-envelope" style="margin-right:8px;"></span>info@shinyapes.co.nz <span class="ion-ios-arrow-forward"></span
+			  <a href="mailto:info@shinyapes.co.nz" class="btn btn-primary mr-md-4 py-2 px-4 mt-2 mt-md-0" style="text-transform:lowercase;"
+                ><span class="fa fa-envelope" style="margin-right:8px;text-transform:lowercase;"></span>info@shinyapes.co.nz <span class="ion-ios-arrow-forward"></span
               ></a>
             </p>
 			<h5 style="margin-top: 40px; color: #f3e53d;">Follow us on social media</h5>
@@ -210,30 +220,31 @@
                       </div>
                     </div>
                   </div>
-				  <div class="col-12 col-md d-flex align-items-center">
-                    <div class="form-group py-md-4 py-2 px-4 px-md-0">
+                  <div class="col-12 d-flex align-items-center">
+                    <div class="form-group py-md-4 py-2 px-4 px-md-0 w-100">
                       <label for="contactMessage">Message</label>
-                      <input
-                        type="text"
+                      <textarea
                         class="form-control"
                         id="contactMessage"
                         placeholder="Message"
-                      />
+                        rows="4"
+                      ></textarea>
                     </div>
                   </div>
                   <div
                     class="col-12 col-md d-flex align-items-center pb-4 pb-md-0"
                   >
                   <div
-                    class="col-12 col-md d-flex align-items-center align-items-stretch"
+                    class="col-12 col-md d-flex align-items-center align-items-stretch justify-content-center"
                   >
                     <div
-                      class="form-group py-md-4 py-2 px-4 px-md-0 d-flex align-items-stretch bg-primary"
+                      class="form-group py-md-4 py-2 px-4 px-md-0 d-flex align-items-stretch justify-content-center"
                     >
                       <input
                         type="submit"
                         value="Get a Quote"
                         class="btn btn-primary py-3 px-4"
+                        id="contactSubmit"
                       />
                     </div>
                   </div>
@@ -595,10 +606,7 @@
               class="ftco-footer-social list-unstyled mt-4"
             >
               <li class="ftco-animate">
-                <a href="#"><span class="fa fa-twitter"></span></a>
-              </li>
-              <li class="ftco-animate">
-                <a href="#"><span class="fa fa-facebook"></span></a>
+                <a href="https://www.facebook.com/share/17X7to1iRJ/"><span class="fa fa-facebook"></span></a>
               </li>
               <li class="ftco-animate">
                 <a href="#"><span class="fa fa-instagram"></span></a>
